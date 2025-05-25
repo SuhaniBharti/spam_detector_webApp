@@ -48,7 +48,7 @@ const Header = () => {
                 className="rounded-circle"
               />
             </a>
-            <ul className="dropdown-menu dropdown-menu-end text-small">
+            {/* <ul className="dropdown-menu dropdown-menu-end text-small">
               <li>
                 <a className="dropdown-item" href="#">
                   Profile
@@ -62,7 +62,7 @@ const Header = () => {
                   Sign out
                 </a>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
       </div>

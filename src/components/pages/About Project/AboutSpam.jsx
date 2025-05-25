@@ -32,7 +32,7 @@ const AboutSpam = () => {
             textAlign: 'center',
             color: '#0d6efd'
           }}>
-            📱 Understanding Spam SMS
+            Understanding Spam SMS
           </h1>
 
           <p>
