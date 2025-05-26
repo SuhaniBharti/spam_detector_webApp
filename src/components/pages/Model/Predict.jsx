@@ -15,10 +15,8 @@ const Predict = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: text }),
       });
-
       const data = await response.json();
       navigate('/predict', { state: { result: data.prediction, message: text } });
-
     } catch (error) {
       console.error("Error:", error);
       navigate("/predict", { state: { result: "Error" } });
