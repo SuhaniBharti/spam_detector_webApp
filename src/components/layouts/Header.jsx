@@ -2,7 +2,7 @@
 
 import user from '../../assets/user.png';
 import './Header.css';
-import dataseekers from './dataseekers.png';
+import dataseekers from '../../assets/dataseekers.png';
 import { useState } from 'react';
 
 const Header = () => {

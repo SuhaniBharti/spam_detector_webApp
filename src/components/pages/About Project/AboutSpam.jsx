@@ -1,6 +1,5 @@
 import React from 'react';
 import Layout from '../../layouts/Layout';
-import image2 from "../../../assets/bimg2.jpg";
 const AboutSpam = () => {
   return (
     <Layout>
