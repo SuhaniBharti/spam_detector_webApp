@@ -1,5 +1,6 @@
 
 #  Spam SMS Classifier - Frontend
+ [live link - https://spamdetection-gamma.vercel.app ]
 
 This is the **React.js** frontend for the Spam SMS Classifier project. It allows users to input a text message and receive a prediction from the backend FastAPI model on whether the message is spam or not.
 
