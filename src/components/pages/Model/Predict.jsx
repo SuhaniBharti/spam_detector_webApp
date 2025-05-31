@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../layouts/Layout";
 
+
 const Predict = () => {
   const [text, setText] = useState("");
   const navigate = useNavigate();
@@ -28,7 +29,8 @@ const Predict = () => {
       <div
         style={{
           minHeight: "100vh",
-          backgroundColor: "#e9ecef", // soft gray background
+          //backgroundColor: "#e9ecef", // soft gray background
+          // backgroundImage:`url(${backimg})`,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -39,7 +41,9 @@ const Predict = () => {
           style={{
             width: "100%",
             maxWidth: "600px",
-            backgroundColor: "#fff",
+           // backgroundColor: "#fff",
+             backgroundColor:"rgba(0, 0, 0, 1)",
+             //backgroundImage:`url(${backimg})`,
             borderRadius: "16px",
             boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)",
             padding: "40px",
@@ -51,7 +55,7 @@ const Predict = () => {
               textAlign: "center",
               marginBottom: "30px",
               fontSize: "28px",
-              color: "#212529",
+              //color: "#212529",
             }}
           >
             📩 Spam SMS Detector
@@ -62,7 +66,7 @@ const Predict = () => {
                 display: "block",
                 marginBottom: "10px",
                 fontWeight: "500",
-                color: "#495057",
+               // color: "#495057",
                 fontSize: "16px",
               }}
             >
