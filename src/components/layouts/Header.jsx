@@ -2,7 +2,7 @@
 
 
 import user from '../../assets/user.png';
-import '../../Header.css';
+import '../../header.css';
 import dataseekers from '../../assets/dataseekers.png';
 import { useState, useEffect, useRef } from 'react';
 
