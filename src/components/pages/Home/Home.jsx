@@ -1,8 +1,3 @@
-
-
-
-
-
 import Layout from "../../layouts/Layout";
 import screenshot from "../../../assets/spam5.png";
 import React from "react";
