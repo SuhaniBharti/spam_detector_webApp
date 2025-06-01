@@ -1,36 +1,55 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../layouts/Layout";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Predict = () => {
   const [text, setText] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setLoading(true);
 
     try {
-      const response = await fetch("https://spam-sms-classifier-backend.onrender.com/predict", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: text }),
-      });
+      const response = await fetch(
+        "https://spam-sms-classifier-backend.onrender.com/predict",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: text }),
+        }
+      );
+
       const data = await response.json();
-      navigate('/predict', { state: { result: data.prediction, message: text } });
+      toast.success(" Message classified successfully!");
+
+      setTimeout(() => {
+        navigate("/predict", {
+          state: { result: data.prediction, message: text },
+        });
+      }, 1500);
     } catch (error) {
+      toast.error("Something went wrong. Please try again.");
       console.error("Error:", error);
-      navigate("/predict", { state: { result: "Error" } });
+
+      setTimeout(() => {
+        navigate("/predict", { state: { result: "Error" } });
+      }, 1500);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <Layout>
+      <ToastContainer position="top-center" autoClose={3000} />
       <div
         style={{
           minHeight: "100vh",
-          //backgroundColor: "#e9ecef", // soft gray background
-          // backgroundImage:`url(${backimg})`,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -41,9 +60,7 @@ const Predict = () => {
           style={{
             width: "100%",
             maxWidth: "600px",
-           // backgroundColor: "#fff",
-             backgroundColor:"rgba(0, 0, 0, 1)",
-             //backgroundImage:`url(${backimg})`,
+            backgroundColor: "rgba(0, 0, 0, 1)",
             borderRadius: "16px",
             boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)",
             padding: "40px",
@@ -55,23 +72,25 @@ const Predict = () => {
               textAlign: "center",
               marginBottom: "30px",
               fontSize: "28px",
-              //color: "#212529",
+              color: "#fff",
             }}
           >
             📩 Spam SMS Detector
           </h2>
+
           <form onSubmit={handleSubmit}>
             <label
               style={{
                 display: "block",
                 marginBottom: "10px",
                 fontWeight: "500",
-               // color: "#495057",
                 fontSize: "16px",
+                color: "#ccc",
               }}
             >
               Enter your SMS message:
             </label>
+
             <textarea
               placeholder="Type your message here..."
               value={text}
@@ -90,24 +109,30 @@ const Predict = () => {
                 color: "#212529",
               }}
             />
+
             <button
               type="submit"
+              disabled={loading}
               style={{
                 width: "100%",
                 padding: "14px",
-                backgroundColor: "#007bff",
+                backgroundColor: loading ? "#6c757d" : "#007bff",
                 border: "none",
                 color: "white",
                 borderRadius: "10px",
                 fontSize: "17px",
                 fontWeight: "600",
-                cursor: "pointer",
+                cursor: loading ? "not-allowed" : "pointer",
                 transition: "background-color 0.3s ease",
               }}
-              onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
-              onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
+              onMouseOver={(e) => {
+                if (!loading) e.target.style.backgroundColor = "#0056b3";
+              }}
+              onMouseOut={(e) => {
+                if (!loading) e.target.style.backgroundColor = "#007bff";
+              }}
             >
-              🔍 Check Message
+              {loading ? " Checking..." : "🔍 Check Message"}
             </button>
           </form>
         </div>
